@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rules = () => {
+const ImageRules = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="304" height="270">
       <defs>
@@ -155,4 +155,4 @@ const Rules = () => {
   );
 };
 
-export default Rules;
+export default ImageRules;

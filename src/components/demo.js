@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledContainer = styled.div`
   border: 1px solid red;
-  margin: 30px;
+  margin: 30px 0;
 `;
 const Demo = () => {
   return (

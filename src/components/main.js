@@ -4,12 +4,12 @@ import { theme } from "../styles";
 const { colors } = theme;
 
 const StyledContainer = styled.div`
-  border: 1px solid red;
-  height: 100vh;
   background: linear-gradient(
     ${colors.radial_gradientA},
     ${colors.radial_gradientB}
   );
+  height: 100vh;
+  padding: 30px;
 `;
 
 const Main = (props) => {
