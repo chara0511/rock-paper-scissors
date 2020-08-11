@@ -1,16 +1,18 @@
 import React from "react";
+
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
-  border: 1px solid red;
+  border: 1px solid green;
   margin: 30px;
 `;
-const Demo = () => {
+
+const Rules = () => {
   return (
     <StyledContainer>
-      <p>from Demo.js</p>
+      <p>from Rules.js</p>
     </StyledContainer>
   );
 };
 
-export default Demo;
+export default Rules;

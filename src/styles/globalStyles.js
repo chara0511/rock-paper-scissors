@@ -76,6 +76,10 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+   p {
+    color:${colors.dark_text}
+  }
+
 `;
 
 export default GlobalStyles;

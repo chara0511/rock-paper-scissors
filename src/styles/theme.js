@@ -14,6 +14,7 @@ export const theme = {
     rock_gradientB: "#DD405D",
     scissors_gradientA: "#EC9E0D",
     scissors_gradientB: "#EBA822",
+    score_background: "#FFFFFF",
     score_text: "#2A45C0",
   },
   font: {
@@ -21,10 +22,10 @@ export const theme = {
       "Barlow Semi Condensed, San Francisco, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Roboto, Helvetica Neue, Segoe UI, Arial, sans-serif",
   },
   fontSizes: {
-    sm: "0.83em", //14px
+    sm: "0.56em", //10px
     md: "0.91em", //16px
     lg: "18px",
     ml: "1.33em", //23px
-    xl: "1.66em", //30px
+    xl: "1.77em", //32px
   },
 };
