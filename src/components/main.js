@@ -10,6 +10,9 @@ const StyledContainer = styled.div`
   );
   height: 100vh;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Main = (props) => {

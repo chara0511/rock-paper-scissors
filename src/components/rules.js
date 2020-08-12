@@ -6,11 +6,7 @@ import { Modal } from ".";
 
 const StyledContainer = styled.div`
   /* border: 1px solid green; */
-  bottom: 55px;
-  left: 0;
   margin: 0;
-  position: fixed;
-  right: 0;
   text-align: center;
 `;
 
