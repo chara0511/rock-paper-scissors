@@ -5,7 +5,7 @@ const IconPaper = () => {
     <svg
       className=" iconPaper"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 49 49"
+      viewBox="0 0 49 59"
       width="49"
       height="59"
     >

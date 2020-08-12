@@ -41,19 +41,21 @@ const StyledContainer = styled.div`
 
 const StyledButton = styled.button`
   align-items: center;
-  background-color: ${colors.score_background};
-  border: 16px solid ${(props) => props.withBorder && props.withBorder};
+  border: 14px solid ${(props) => props.withBorder && props.withBorder};
+  box-shadow: 0px 8px ${(props) => props.withShadow && props.withShadow},
+    inset 0px 5px ${(props) => props.withShadow && `${colors.lightGrayishBlue}`};
   border-radius: 50%;
   display: flex;
   height: 130px;
   justify-content: center;
   position: absolute;
   width: 130px;
+  transition: all 0.3s ease;
+  user-select: none;
 
-  & .iconPaper,
-  & .iconScissor,
-  & .iconRock {
-    height: inherit;
+  &:active {
+    box-shadow: none;
+    transform: translateY(8px);
   }
 `;
 
@@ -62,18 +64,27 @@ const Demo = () => {
     <StyledContainer>
       <BgTriangle />
 
-      <StyledButton className="paper" withBorder={`${colors.paper_gradientA}`}>
+      <StyledButton
+        className="paper"
+        withBorder={`${colors.paper_gradientB}`}
+        withShadow={`${colors.paper_gradientA}`}
+      >
         <IconPaper />
       </StyledButton>
 
       <StyledButton
         className="scissors"
-        withBorder={`${colors.scissors_gradientA}`}
+        withBorder={`${colors.scissors_gradientB}`}
+        withShadow={`${colors.scissors_gradientA}`}
       >
         <IconScissors />
       </StyledButton>
 
-      <StyledButton className="rock" withBorder={`${colors.rock_gradientA}`}>
+      <StyledButton
+        className="rock"
+        withBorder={`${colors.rock_gradientB}`}
+        withShadow={`${colors.rock_gradientA}`}
+      >
         <IconRock />
       </StyledButton>
     </StyledContainer>

@@ -4,6 +4,7 @@ export const theme = {
     cyan_gradientB: "#51BDD0",
     dark_text: "#3B4262",
     header_outline: "#606E85",
+    lightGrayishBlue: "#C7C9D0",
     lizard_gradientA: "#824EE3",
     lizard_gradientB: "#8C5CE4",
     paper_gradientA: "#4764F4",
