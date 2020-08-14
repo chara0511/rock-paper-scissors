@@ -40,11 +40,12 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledResult = styled.div`
+const StyledContent = styled.div`
   border: 1px solid green;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-top: 50px;
 
   & button {
     position: relative;
@@ -55,9 +56,14 @@ const StyledResult = styled.div`
   }
 `;
 
-const StyledResultDescription = styled.div`
+const StyledDescription = styled.p`
+  border: 1px solid white;
+  margin: 30px 0;
+`;
+
+const StyledResult = styled.div`
   border: 1px solid yellow;
-  margin: 50px auto;
+  margin: 20px auto;
   width: 220px;
 `;
 
@@ -189,16 +195,23 @@ const Demo = () => {
   return (
     <StyledContainer>
       {drop.message ? (
-        <StyledResult>
-          <StyledButton className={drop.user} name={drop.user}>
-            <FormattedIcons name={drop.user} />
-          </StyledButton>
+        <StyledContent>
+          <div>
+            <StyledButton className={drop.user} name={drop.user}>
+              <FormattedIcons name={drop.user} />
+            </StyledButton>
+            <StyledDescription>You picked</StyledDescription>
+          </div>
 
-          <StyledButton className={drop.computer} name={drop.computer}>
-            <FormattedIcons name={drop.computer} />
-          </StyledButton>
+          <div>
+            <StyledButton className={drop.computer} name={drop.computer}>
+              <FormattedIcons name={drop.computer} />
+            </StyledButton>
 
-          <StyledResultDescription>
+            <StyledDescription>The house picked</StyledDescription>
+          </div>
+
+          <StyledResult>
             <StyledTitle>{drop.message.msg}</StyledTitle>
 
             <StyledButtonBack
@@ -212,8 +225,8 @@ const Demo = () => {
             >
               Play again
             </StyledButtonBack>
-          </StyledResultDescription>
-        </StyledResult>
+          </StyledResult>
+        </StyledContent>
       ) : (
         <>
           <BgTriangle />
