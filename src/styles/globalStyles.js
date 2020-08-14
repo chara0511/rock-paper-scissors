@@ -5,6 +5,9 @@ import FontFaces from "./font";
 const { colors, font, fontSizes } = theme;
 
 const GlobalStyles = createGlobalStyle`
+
+  ${FontFaces}
+
   html {
     box-sizing: border-box;
     width: 100%;
@@ -36,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     border: 0;
     border-radius: 0;
+    font-family: inherit;
     
     &:focus,
     &:active {
@@ -43,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  ${FontFaces}
+  
   
   h1,
   h2,
@@ -66,8 +70,10 @@ const GlobalStyles = createGlobalStyle`
     &:focus {
       outline: 0;
     }
+
     &::placeholder {
     }
+
     &:focus,
     &:active {
       &::placeholder {
@@ -76,8 +82,8 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-   p {
-    color:${colors.dark_text}
+  p {
+    color: ${colors.dark_text};
   }
 
 `;
