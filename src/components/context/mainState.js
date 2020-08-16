@@ -1,13 +1,20 @@
 import React, { useReducer } from "react";
 import MainContext from "./mainContext";
 import { mainReducer } from "./mainReducer";
-import { YOU_PICKED, HOUSE_PICKED, COMPARE, RESULT, SCORE } from "./types";
+import {
+  YOU_PICKED,
+  HOUSE_PICKED,
+  TOGGLE,
+  RESULT,
+  INCREMENT,
+  DECREMENT,
+} from "./types";
 
 const MainState = ({ children }) => {
   const initialState = {
     you_picked: null,
     house_picked: null,
-    compare: false,
+    toggle: false,
     result: null,
     score: 0,
   };
@@ -22,8 +29,8 @@ const MainState = ({ children }) => {
     dispatch({ type: HOUSE_PICKED, payload: name });
   };
 
-  const getCompare = (boolean) => {
-    dispatch({ type: COMPARE, payload: boolean });
+  const changeToggle = (boolean) => {
+    dispatch({ type: TOGGLE, payload: boolean });
   };
 
   // resolve this
@@ -53,8 +60,12 @@ const MainState = ({ children }) => {
     }
   };
 
-  const getScore = (number) => {
-    dispatch({ type: SCORE, payload: number });
+  const incrementScore = () => {
+    dispatch({ type: INCREMENT });
+  };
+
+  const decrementScore = () => {
+    dispatch({ type: DECREMENT });
   };
 
   return (
@@ -63,14 +74,15 @@ const MainState = ({ children }) => {
         state: state,
         you_picked: state.you_picked,
         house_picked: state.house_picked,
-        compare: state.compare,
+        toggle: state.toggle,
         result: state.result,
         score: state.score,
         getYouPicked,
         getHousePicked,
-        getCompare,
+        changeToggle,
         getResult,
-        getScore,
+        incrementScore,
+        decrementScore,
       }}
     >
       {children}

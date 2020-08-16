@@ -120,12 +120,14 @@ const Demo = () => {
   const {
     you_picked,
     house_picked,
-    compare,
+    toggle,
     result,
     getYouPicked,
     getHousePicked,
-    getCompare,
+    changeToggle,
     getResult,
+    incrementScore,
+    decrementScore,
   } = useContext(MainContext);
 
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
@@ -141,7 +143,11 @@ const Demo = () => {
 
     getResult(items[parseFloat(e.currentTarget.value)], randomItem);
 
-    getCompare(true);
+    changeToggle(true);
+
+    incrementScore();
+
+    decrementScore();
   };
 
   const data = [
@@ -161,7 +167,7 @@ const Demo = () => {
 
   return (
     <StyledContainer>
-      {compare ? (
+      {toggle ? (
         <StyledContent>
           <div>
             <StyledButton className={you_picked.name} name={you_picked.name}>
@@ -184,7 +190,7 @@ const Demo = () => {
           <StyledResult>
             <StyledTitle>{result}</StyledTitle>
 
-            <StyledButtonBack onClick={() => getCompare(false)}>
+            <StyledButtonBack onClick={() => changeToggle(false)}>
               Play again
             </StyledButtonBack>
           </StyledResult>

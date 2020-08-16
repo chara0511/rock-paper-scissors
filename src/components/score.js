@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../styles";
+import MainContext from "./context/mainContext";
 
 const { colors, fontSizes } = theme;
 
@@ -31,10 +32,11 @@ const StyledScore = styled.p`
 `;
 
 const Score = () => {
+  const { score } = useContext(MainContext);
   return (
     <StyledContainer>
       <StyledName>Score</StyledName>
-      <StyledScore>12</StyledScore>
+      <StyledScore>{score}</StyledScore>
     </StyledContainer>
   );
 };

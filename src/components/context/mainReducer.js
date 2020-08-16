@@ -12,14 +12,26 @@ export const mainReducer = (state, action) => {
         house_picked: { name: action.payload },
       };
 
-    case "COMPARE":
+    case "TOGGLE":
       return {
         ...state,
-        compare: action.payload,
+        toggle: action.payload,
       };
 
     case "RESULT":
       return { ...state, result: action.payload };
+
+    case "DECREMENT":
+      return {
+        ...state,
+        score: state.result === "You Lose" ? state.score - 1 : state.score,
+      };
+
+    case "INCREMENT":
+      return {
+        ...state,
+        score: state.result === "You Win" ? state.score + 1 : state.score,
+      };
 
     default:
       return state;
