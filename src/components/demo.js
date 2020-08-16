@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import BgTriangle from "./images/bgTriangle";
 import { FormattedIcons } from "../icons";
 import { theme } from "../styles/theme";
-import { useState } from "react";
+import MainContext from "./context/mainContext";
 
 const { colors, fontSizes } = theme;
 
 const StyledContainer = styled.div`
   border: 1px solid red;
-  margin: 30px auto;
+  margin: 0 auto;
   position: relative;
   text-align: center;
   max-width: 316px;
@@ -22,22 +22,6 @@ const StyledContainer = styled.div`
       stroke-width: 26;
     }
   }
-
-  & .Paper {
-    top: 0;
-  }
-
-  & .Scissor {
-    right: 0;
-    top: 0;
-  }
-
-  & .Rock {
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    right: 0;
-  }
 `;
 
 const StyledContent = styled.div`
@@ -45,7 +29,7 @@ const StyledContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-top: 50px;
+  margin-top: 2.7em;
 
   & button {
     position: relative;
@@ -58,20 +42,20 @@ const StyledContent = styled.div`
 
 const StyledDescription = styled.p`
   border: 1px solid white;
+  color: ${colors.score_background};
+  font-size: ${fontSizes.md};
   margin: 30px 0;
+  text-transform: uppercase;
 `;
 
 const StyledResult = styled.div`
   border: 1px solid yellow;
-  margin: 20px auto;
+  margin: 0 auto;
   width: 220px;
 `;
 
 const StyledButton = styled.button`
   align-items: center;
-  border: 14px solid ${(props) => props.withBorder && props.withBorder};
-  box-shadow: 0px 8px ${(props) => props.withShadow && props.withShadow},
-    inset 0px 5px ${(props) => props.withShadow && `${colors.lightGrayishBlue}`};
   border-radius: 50%;
   display: flex;
   height: 130px;
@@ -80,6 +64,31 @@ const StyledButton = styled.button`
   width: 130px;
   transition: all 0.3s ease;
   user-select: none;
+
+  &.Paper {
+    border: 14px solid ${colors.paper_gradientB};
+    box-shadow: 0px 8px ${colors.paper_gradientA},
+      inset 0px 5px ${colors.lightGrayishBlue};
+    top: 0;
+  }
+
+  &.Scissor {
+    border: 14px solid ${colors.scissor_gradientB};
+    box-shadow: 0px 8px ${colors.scissor_gradientA},
+      inset 0px 5px ${colors.lightGrayishBlue};
+    right: 0;
+    top: 0;
+  }
+
+  &.Rock {
+    border: 14px solid ${colors.rock_gradientB};
+    box-shadow: 0px 8px ${colors.rock_gradientA},
+      inset 0px 5px ${colors.lightGrayishBlue};
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+  }
 
   &:active {
     box-shadow: none;
@@ -108,121 +117,74 @@ const StyledButtonBack = styled.button`
 `;
 
 const Demo = () => {
-  const [drop, setDrop] = useState({ user: null, computer: null, msg: null });
+  const {
+    you_picked,
+    house_picked,
+    compare,
+    result,
+    getYouPicked,
+    getHousePicked,
+    getCompare,
+    getResult,
+  } = useContext(MainContext);
 
-  const random = Math.random();
+  const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
-  const computer = (numberRandom) => {
-    if (numberRandom >= 0.66) {
-      return "Rock";
-    }
-    if (numberRandom >= 0.33) {
-      return "Scissor";
-    }
-    if (numberRandom < 0.33) {
-      return "Paper";
-    }
-  };
+  const items = ["Paper", "Scissor", "Rock"];
 
-  const message = (name) => {
-    //paper
-
-    if (name === "Paper") {
-      if (random >= 0.66) {
-        return { msg: "You win" };
-      } else if (random >= 0.33) {
-        return { msg: "You Lose" };
-      } else if (random < 0.33) {
-        return { msg: "Empate" };
-      }
-    }
-
-    //scissors
-    if (name === "Scissor") {
-      if (random >= 0.66) {
-        return { msg: "You lose" };
-      } else if (random >= 0.33) {
-        return { msg: "Empate" };
-      } else if (random < 0.33) {
-        return { msg: "You Win" };
-      }
-    }
-
-    //rock
-    if (name === "Rock") {
-      if (random >= 0.66) {
-        return { msg: "Empate" };
-      } else if (random >= 0.33) {
-        return { msg: "You win" };
-      } else if (random < 0.33) {
-        return { msg: "You lose" };
-      }
-    }
-  };
+  const randomItem = items[random(0, 3)];
 
   const runDemo = (e) => {
-    setDrop({
-      user: e.currentTarget.name,
-      computer: computer(random),
-      message: message(e.currentTarget.name),
-    });
+    getYouPicked(items[parseFloat(e.currentTarget.value)]);
+
+    getHousePicked(randomItem);
+
+    getResult(items[parseFloat(e.currentTarget.value)], randomItem);
+
+    getCompare(true);
   };
 
   const data = [
     {
       name: "Paper",
-      style: {
-        border: `${colors.paper_gradientB}`,
-        box_shadow: `${colors.paper_gradientA}`,
-      },
+      value: 0,
     },
     {
       name: "Scissor",
-      style: {
-        border: `${colors.scissors_gradientB}`,
-        box_shadow: `${colors.scissors_gradientA}`,
-      },
+      value: 1,
     },
     {
       name: "Rock",
-      style: {
-        border: `${colors.rock_gradientB}`,
-        box_shadow: `${colors.rock_gradientA}`,
-      },
+      value: 2,
     },
   ];
 
   return (
     <StyledContainer>
-      {drop.message ? (
+      {compare ? (
         <StyledContent>
           <div>
-            <StyledButton className={drop.user} name={drop.user}>
-              <FormattedIcons name={drop.user} />
+            <StyledButton className={you_picked.name} name={you_picked.name}>
+              <FormattedIcons name={you_picked.name} />
             </StyledButton>
             <StyledDescription>You picked</StyledDescription>
           </div>
 
           <div>
-            <StyledButton className={drop.computer} name={drop.computer}>
-              <FormattedIcons name={drop.computer} />
+            <StyledButton
+              className={house_picked.name}
+              name={house_picked.name}
+            >
+              <FormattedIcons name={house_picked.name} />
             </StyledButton>
 
             <StyledDescription>The house picked</StyledDescription>
           </div>
 
           <StyledResult>
-            <StyledTitle>{drop.message.msg}</StyledTitle>
+            <StyledTitle>{result}</StyledTitle>
 
-            <StyledButtonBack
-              onClick={() =>
-                setDrop({
-                  user: null,
-                  computer: null,
-                  message: null,
-                })
-              }
-            >
+            <StyledButtonBack onClick={() => getCompare(false)}>
               Play again
             </StyledButtonBack>
           </StyledResult>
@@ -235,10 +197,9 @@ const Demo = () => {
             <StyledButton
               className={item.name}
               key={i}
-              withBorder={item.style.border}
-              withShadow={item.style.box_shadow}
               name={item.name}
               onClick={runDemo}
+              value={item.value}
             >
               <FormattedIcons name={item.name} />
             </StyledButton>

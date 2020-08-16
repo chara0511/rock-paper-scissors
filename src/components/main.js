@@ -8,8 +8,7 @@ const StyledContainer = styled.div`
     ${colors.radial_gradientA},
     ${colors.radial_gradientB}
   );
-  min-height: 750px;
-  height: 100vh;
+  min-height: 100vh;
   padding: 30px;
   display: flex;
   flex-direction: column;
