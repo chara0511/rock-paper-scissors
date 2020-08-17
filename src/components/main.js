@@ -4,9 +4,10 @@ import { theme } from "../styles";
 const { colors } = theme;
 
 const StyledContainer = styled.div`
-  background: linear-gradient(
-    ${colors.radial_gradientA},
-    ${colors.radial_gradientB}
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    ${colors.radial_gradientA} 15%,
+    ${colors.radial_gradientB} 100%
   );
   min-height: 100vh;
   padding: 30px;
