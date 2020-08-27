@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import BgTriangle from "./images/bgTriangle";
 import { FormattedIcons } from "../icons";
@@ -54,7 +54,7 @@ const StyledResult = styled.div`
   width: 220px;
 `;
 
-const StyledButton = styled.button`
+const Item = styled.button`
   align-items: center;
   border-radius: 50%;
   display: flex;
@@ -96,6 +96,16 @@ const StyledButton = styled.button`
   }
 `;
 
+const ItemLoading = styled(Item)`
+  border: none;
+  width: 105px;
+  height: 105px;
+  margin: 15px 12.5px 40px 12.5px;
+  box-shadow: none;
+
+  background: ${colors.itemLoading};
+`;
+
 const StyledTitle = styled.h1`
   color: ${colors.score_background};
   font-size: ${fontSizes.xxl};
@@ -122,6 +132,7 @@ const Demo = () => {
     house_picked,
     toggle,
     result,
+    data,
     getYouPicked,
     getHousePicked,
     changeToggle,
@@ -129,6 +140,8 @@ const Demo = () => {
     incrementScore,
     decrementScore,
   } = useContext(MainContext);
+
+  const [loading, setLoading] = useState(null);
 
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
@@ -148,41 +161,37 @@ const Demo = () => {
     incrementScore();
 
     decrementScore();
+
+    setTimeout(() => {
+      setLoading(true);
+    }, 1000);
   };
 
-  const data = [
-    {
-      name: "Paper",
-      value: 0,
-    },
-    {
-      name: "Scissor",
-      value: 1,
-    },
-    {
-      name: "Rock",
-      value: 2,
-    },
-  ];
+  const playAgain = () => {
+    changeToggle(false);
+
+    setLoading(false);
+  };
 
   return (
     <StyledContainer>
       {toggle ? (
         <StyledContent>
           <div>
-            <StyledButton className={you_picked.name} name={you_picked.name}>
+            <Item className={you_picked.name} name={you_picked.name}>
               <FormattedIcons name={you_picked.name} />
-            </StyledButton>
+            </Item>
             <StyledDescription>You picked</StyledDescription>
           </div>
 
           <div>
-            <StyledButton
-              className={house_picked.name}
-              name={house_picked.name}
-            >
-              <FormattedIcons name={house_picked.name} />
-            </StyledButton>
+            {loading ? (
+              <Item className={house_picked.name} name={house_picked.name}>
+                <FormattedIcons name={house_picked.name} />
+              </Item>
+            ) : (
+              <ItemLoading />
+            )}
 
             <StyledDescription>The house picked</StyledDescription>
           </div>
@@ -190,25 +199,23 @@ const Demo = () => {
           <StyledResult>
             <StyledTitle>{result}</StyledTitle>
 
-            <StyledButtonBack onClick={() => changeToggle(false)}>
-              Play again
-            </StyledButtonBack>
+            <StyledButtonBack onClick={playAgain}>Play again</StyledButtonBack>
           </StyledResult>
         </StyledContent>
       ) : (
         <>
           <BgTriangle />
 
-          {data.map((item, i) => (
-            <StyledButton
-              className={item.name}
+          {data.map(({ name, value }, i) => (
+            <Item
+              className={name}
               key={i}
-              name={item.name}
+              name={name}
               onClick={runDemo}
-              value={item.value}
+              value={value}
             >
-              <FormattedIcons name={item.name} />
-            </StyledButton>
+              <FormattedIcons name={name} />
+            </Item>
           ))}
         </>
       )}

@@ -17,6 +17,7 @@ export const theme = {
     scissor_gradientB: "#EBA822",
     score_background: "#FFFFFF",
     score_text: "#2A45C0",
+    itemLoading: "#122343",
   },
   font: {
     barlow_semi_condensed:

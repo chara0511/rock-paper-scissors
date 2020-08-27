@@ -17,6 +17,20 @@ const MainState = ({ children }) => {
     toggle: false,
     result: null,
     score: 0,
+    data: [
+      {
+        name: "Paper",
+        value: 0,
+      },
+      {
+        name: "Scissor",
+        value: 1,
+      },
+      {
+        name: "Rock",
+        value: 2,
+      },
+    ],
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -35,25 +49,28 @@ const MainState = ({ children }) => {
 
   // resolve this
   const getResult = (you, house) => {
+    const dispatchFn = (message) =>
+      dispatch({ type: RESULT, payload: message });
+
     if (you === house) {
-      return dispatch({ type: RESULT, payload: "Tie" });
+      return dispatchFn("Tie");
     }
 
     switch (you) {
       case "Paper":
         return house === "Scissor"
-          ? dispatch({ type: RESULT, payload: "You Lose" })
-          : dispatch({ type: RESULT, payload: "You Win" });
+          ? dispatchFn("You Lose")
+          : dispatchFn("You Win");
 
       case "Scissor":
         return house === "Paper"
-          ? dispatch({ type: RESULT, payload: "You Win" })
-          : dispatch({ type: RESULT, payload: "You Lose" });
+          ? dispatchFn("You Win")
+          : dispatchFn("You Lose");
 
       case "Rock":
         return house === "Scissor"
-          ? dispatch({ type: RESULT, payload: "You Win" })
-          : dispatch({ type: RESULT, payload: "You Lose" });
+          ? dispatchFn("You Win")
+          : dispatchFn("You Lose");
 
       default:
         return;
@@ -61,11 +78,15 @@ const MainState = ({ children }) => {
   };
 
   const incrementScore = () => {
-    dispatch({ type: INCREMENT });
+    setTimeout(() => {
+      dispatch({ type: INCREMENT });
+    }, 1000);
   };
 
   const decrementScore = () => {
-    dispatch({ type: DECREMENT });
+    setTimeout(() => {
+      dispatch({ type: DECREMENT });
+    }, 1000);
   };
 
   return (
@@ -77,6 +98,7 @@ const MainState = ({ children }) => {
         toggle: state.toggle,
         result: state.result,
         score: state.score,
+        data: state.data,
         getYouPicked,
         getHousePicked,
         changeToggle,
