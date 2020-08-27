@@ -52,6 +52,7 @@ const StyledResult = styled.div`
   border: 1px solid yellow;
   margin: 0 auto;
   width: 220px;
+  visibility: ${(props) => (props.show ? props.show : "hidden")};
 `;
 
 const Item = styled.button`
@@ -196,7 +197,7 @@ const Demo = () => {
             <StyledDescription>The house picked</StyledDescription>
           </div>
 
-          <StyledResult>
+          <StyledResult show={loading && "initial"}>
             <StyledTitle>{result}</StyledTitle>
 
             <StyledButtonBack onClick={playAgain}>Play again</StyledButtonBack>
