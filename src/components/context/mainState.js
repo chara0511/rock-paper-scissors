@@ -12,8 +12,8 @@ import {
 
 const MainState = ({ children }) => {
   const initialState = {
-    you_picked: null,
-    house_picked: null,
+    you_picked: "",
+    house_picked: "",
     toggle: false,
     result: null,
     score: 0,
@@ -35,12 +35,12 @@ const MainState = ({ children }) => {
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
-  const getYouPicked = (name) => {
-    dispatch({ type: YOU_PICKED, payload: name });
+  const getYouPicked = (value) => {
+    dispatch({ type: YOU_PICKED, payload: value });
   };
 
-  const getHousePicked = (name) => {
-    dispatch({ type: HOUSE_PICKED, payload: name });
+  const getHousePicked = (value) => {
+    dispatch({ type: HOUSE_PICKED, payload: value });
   };
 
   const changeToggle = (boolean) => {
@@ -48,27 +48,27 @@ const MainState = ({ children }) => {
   };
 
   // resolve this
-  const getResult = (you, house) => {
+  const getResult = (youPicked, theHousePicked) => {
     const dispatchFn = (message) =>
       dispatch({ type: RESULT, payload: message });
 
-    if (you === house) {
-      return dispatchFn("Tie");
+    if (youPicked === theHousePicked) {
+      return dispatchFn("Draw");
     }
 
-    switch (you) {
+    switch (youPicked) {
       case "Paper":
-        return house === "Scissor"
+        return theHousePicked === "Scissor"
           ? dispatchFn("You Lose")
           : dispatchFn("You Win");
 
       case "Scissor":
-        return house === "Paper"
+        return theHousePicked === "Paper"
           ? dispatchFn("You Win")
           : dispatchFn("You Lose");
 
       case "Rock":
-        return house === "Scissor"
+        return theHousePicked === "Scissor"
           ? dispatchFn("You Win")
           : dispatchFn("You Lose");
 
@@ -80,13 +80,13 @@ const MainState = ({ children }) => {
   const incrementScore = () => {
     setTimeout(() => {
       dispatch({ type: INCREMENT });
-    }, 1000);
+    }, 2500);
   };
 
   const decrementScore = () => {
     setTimeout(() => {
       dispatch({ type: DECREMENT });
-    }, 1000);
+    }, 2500);
   };
 
   return (

@@ -3,13 +3,13 @@ export const mainReducer = (state, action) => {
     case "YOU_PICKED":
       return {
         ...state,
-        you_picked: { name: action.payload },
+        you_picked: action.payload,
       };
 
     case "HOUSE_PICKED":
       return {
         ...state,
-        house_picked: { name: action.payload },
+        house_picked: action.payload,
       };
 
     case "TOGGLE":

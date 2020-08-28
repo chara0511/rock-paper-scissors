@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import BgTriangle from "./images/bgTriangle";
 import { FormattedIcons } from "../icons";
@@ -148,14 +148,25 @@ const Demo = () => {
 
   const items = ["Paper", "Scissor", "Rock"];
 
-  const randomItem = items[random(0, 3)];
+  const randomPick = () => {
+    const interval = setInterval(() => {
+      const randomItem = items[random(0, 3)];
+      return getHousePicked(randomItem);
+    }, 100);
+
+    setTimeout(() => {
+      return clearInterval(interval);
+    }, 2500);
+  };
+
+  useEffect(() => {
+    getResult(you_picked, house_picked);
+  }, [you_picked, house_picked]);
 
   const runDemo = (e) => {
     getYouPicked(items[parseFloat(e.currentTarget.value)]);
 
-    getHousePicked(randomItem);
-
-    getResult(items[parseFloat(e.currentTarget.value)], randomItem);
+    randomPick();
 
     changeToggle(true);
 
@@ -165,7 +176,7 @@ const Demo = () => {
 
     setTimeout(() => {
       setLoading(true);
-    }, 1000);
+    }, 300);
   };
 
   const playAgain = () => {
@@ -179,16 +190,16 @@ const Demo = () => {
       {toggle ? (
         <StyledContent>
           <div>
-            <Item className={you_picked.name} name={you_picked.name}>
-              <FormattedIcons name={you_picked.name} />
+            <Item className={you_picked} name={you_picked}>
+              <FormattedIcons name={you_picked} />
             </Item>
             <StyledDescription>You picked</StyledDescription>
           </div>
 
           <div>
             {loading ? (
-              <Item className={house_picked.name} name={house_picked.name}>
-                <FormattedIcons name={house_picked.name} />
+              <Item className={house_picked} name={house_picked}>
+                <FormattedIcons name={house_picked} />
               </Item>
             ) : (
               <ItemLoading />
