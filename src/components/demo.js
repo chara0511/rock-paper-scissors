@@ -31,16 +31,14 @@ const StyledContent = styled.div`
   justify-content: space-between;
   margin-top: 2.7em;
 
-  & button {
-    position: relative;
-  }
-
-  & .Rock {
-    margin: 0;
+  & .winner {
+    box-shadow: 0px 0px 0px 1em rgb(45, 62, 92, 50%),
+      0px 0px 0px 2.55em rgb(41, 58, 88, 50%),
+      0px 0px 0px 4.44em rgb(35, 54, 86, 50%);
   }
 `;
 
-const StyledDescription = styled.p`
+const Description = styled.p`
   border: 1px solid white;
   color: ${colors.score_background};
   font-size: ${fontSizes.md};
@@ -48,7 +46,7 @@ const StyledDescription = styled.p`
   text-transform: uppercase;
 `;
 
-const StyledResult = styled.div`
+const Results = styled.div`
   border: 1px solid yellow;
   margin: 0 auto;
   width: 220px;
@@ -66,14 +64,14 @@ const Item = styled.button`
   transition: all 0.3s ease;
   user-select: none;
 
-  &.Paper {
+  &.paper {
     border: 14px solid ${colors.paper_gradientB};
     box-shadow: 0px 8px ${colors.paper_gradientA},
       inset 0px 5px ${colors.lightGrayishBlue};
     top: 0;
   }
 
-  &.Scissor {
+  &.scissor {
     border: 14px solid ${colors.scissor_gradientB};
     box-shadow: 0px 8px ${colors.scissor_gradientA},
       inset 0px 5px ${colors.lightGrayishBlue};
@@ -81,7 +79,7 @@ const Item = styled.button`
     top: 0;
   }
 
-  &.Rock {
+  &.rock {
     border: 14px solid ${colors.rock_gradientB};
     box-shadow: 0px 8px ${colors.rock_gradientA},
       inset 0px 5px ${colors.lightGrayishBlue};
@@ -103,11 +101,26 @@ const ItemLoading = styled(Item)`
   height: 105px;
   margin: 15px 12.5px 40px 12.5px;
   box-shadow: none;
-
   background: ${colors.itemLoading};
+  position: relative;
 `;
 
-const StyledTitle = styled.h1`
+// create a new box to include this 2 box shadows and apply position absolute
+const ItemResult = styled(Item)`
+  position: relative;
+
+  &.paper,
+  &.scissor,
+  &.rock {
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: none;
+  }
+`;
+
+const Title = styled.h1`
   color: ${colors.score_background};
   font-size: ${fontSizes.xxl};
   letter-spacing: 2px;
@@ -115,7 +128,7 @@ const StyledTitle = styled.h1`
   text-transform: uppercase;
 `;
 
-const StyledButtonBack = styled.button`
+const ButtonBack = styled.button`
   border-radius: 10px;
   color: ${colors.dark_text};
   font-size: ${fontSizes.md};
@@ -142,11 +155,11 @@ const Demo = () => {
     decrementScore,
   } = useContext(MainContext);
 
-  const [loading, setLoading] = useState(null);
+  const [results, setResults] = useState(null);
 
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
-  const items = ["Paper", "Scissor", "Rock"];
+  const items = data.map(({ name }) => name);
 
   const randomPick = () => {
     const interval = setInterval(() => {
@@ -156,15 +169,16 @@ const Demo = () => {
 
     setTimeout(() => {
       return clearInterval(interval);
-    }, 2500);
+    }, 2000);
   };
 
   useEffect(() => {
     getResult(you_picked, house_picked);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [you_picked, house_picked]);
 
-  const runDemo = (e) => {
-    getYouPicked(items[parseFloat(e.currentTarget.value)]);
+  const runDemo = ({ currentTarget }) => {
+    getYouPicked(items[parseFloat(currentTarget.value)]);
 
     randomPick();
 
@@ -175,14 +189,14 @@ const Demo = () => {
     decrementScore();
 
     setTimeout(() => {
-      setLoading(true);
+      setResults(true);
     }, 300);
   };
 
   const playAgain = () => {
     changeToggle(false);
 
-    setLoading(false);
+    setResults(false);
   };
 
   return (
@@ -190,29 +204,29 @@ const Demo = () => {
       {toggle ? (
         <StyledContent>
           <div>
-            <Item className={you_picked} name={you_picked}>
+            <ItemResult className={you_picked}>
               <FormattedIcons name={you_picked} />
-            </Item>
-            <StyledDescription>You picked</StyledDescription>
+            </ItemResult>
+            <Description>You picked</Description>
           </div>
 
           <div>
-            {loading ? (
-              <Item className={house_picked} name={house_picked}>
-                <FormattedIcons name={house_picked} />
-              </Item>
-            ) : (
+            {!results ? (
               <ItemLoading />
+            ) : (
+              <ItemResult className={house_picked}>
+                <FormattedIcons name={house_picked} />
+              </ItemResult>
             )}
 
-            <StyledDescription>The house picked</StyledDescription>
+            <Description>The house picked</Description>
           </div>
 
-          <StyledResult show={loading && "initial"}>
-            <StyledTitle>{result}</StyledTitle>
+          <Results show={results && "initial"}>
+            <Title>{result}</Title>
 
-            <StyledButtonBack onClick={playAgain}>Play again</StyledButtonBack>
-          </StyledResult>
+            <ButtonBack onClick={playAgain}>Play again</ButtonBack>
+          </Results>
         </StyledContent>
       ) : (
         <>

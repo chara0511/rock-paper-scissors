@@ -19,15 +19,15 @@ const MainState = ({ children }) => {
     score: 0,
     data: [
       {
-        name: "Paper",
+        name: "paper",
         value: 0,
       },
       {
-        name: "Scissor",
+        name: "scissor",
         value: 1,
       },
       {
-        name: "Rock",
+        name: "rock",
         value: 2,
       },
     ],
@@ -57,18 +57,18 @@ const MainState = ({ children }) => {
     }
 
     switch (youPicked) {
-      case "Paper":
-        return theHousePicked === "Scissor"
+      case "paper":
+        return theHousePicked === "scissor"
           ? dispatchFn("You Lose")
           : dispatchFn("You Win");
 
-      case "Scissor":
-        return theHousePicked === "Paper"
+      case "scissor":
+        return theHousePicked === "paper"
           ? dispatchFn("You Win")
           : dispatchFn("You Lose");
 
-      case "Rock":
-        return theHousePicked === "Scissor"
+      case "rock":
+        return theHousePicked === "scissor"
           ? dispatchFn("You Win")
           : dispatchFn("You Lose");
 
@@ -92,7 +92,6 @@ const MainState = ({ children }) => {
   return (
     <MainContext.Provider
       value={{
-        state: state,
         you_picked: state.you_picked,
         house_picked: state.house_picked,
         toggle: state.toggle,

@@ -5,13 +5,13 @@ import IconRock from "./iconRock";
 
 const FormattedIcons = ({ name }) => {
   switch (name) {
-    case "Paper":
+    case "paper":
       return <IconPaper />;
 
-    case "Scissor":
+    case "scissor":
       return <IconScissors />;
 
-    case "Rock":
+    case "rock":
       return <IconRock />;
 
     default:
