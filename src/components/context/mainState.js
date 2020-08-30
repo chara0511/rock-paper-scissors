@@ -80,13 +80,13 @@ const MainState = ({ children }) => {
   const incrementScore = () => {
     setTimeout(() => {
       dispatch({ type: INCREMENT });
-    }, 2500);
+    }, 2300);
   };
 
   const decrementScore = () => {
     setTimeout(() => {
       dispatch({ type: DECREMENT });
-    }, 2500);
+    }, 2300);
   };
 
   return (

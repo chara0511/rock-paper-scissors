@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import BgTriangle from "./images/bgTriangle";
 import { FormattedIcons } from "../icons";
 import { theme } from "../styles/theme";
@@ -7,12 +7,25 @@ import MainContext from "./context/mainContext";
 
 const { colors, fontSizes } = theme;
 
+const {
+  dark_text,
+  itemLoading,
+  lightGrayishBlue,
+  paper_gradientA,
+  paper_gradientB,
+  rock_gradientA,
+  rock_gradientB,
+  scissor_gradientA,
+  scissor_gradientB,
+  score_background,
+} = colors;
+
 const StyledContainer = styled.div`
   border: 1px solid red;
   margin: 0 auto;
+  max-width: 316px;
   position: relative;
   text-align: center;
-  max-width: 316px;
   width: 100%;
 
   & .bgTriangle {
@@ -34,7 +47,7 @@ const StyledContent = styled.div`
 
 const Description = styled.p`
   border: 1px solid white;
-  color: ${colors.score_background};
+  color: ${score_background};
   font-size: ${fontSizes.md};
   margin: 30px 0;
   position: relative;
@@ -60,24 +73,21 @@ const Item = styled.button`
   user-select: none;
 
   &.paper {
-    border: 14px solid ${colors.paper_gradientB};
-    box-shadow: 0px 8px ${colors.paper_gradientA},
-      inset 0px 5px ${colors.lightGrayishBlue};
+    border: 14px solid ${paper_gradientB};
+    box-shadow: 0px 8px ${paper_gradientA}, inset 0px 5px ${lightGrayishBlue};
     top: 0;
   }
 
   &.scissor {
-    border: 14px solid ${colors.scissor_gradientB};
-    box-shadow: 0px 8px ${colors.scissor_gradientA},
-      inset 0px 5px ${colors.lightGrayishBlue};
+    border: 14px solid ${scissor_gradientB};
+    box-shadow: 0px 8px ${scissor_gradientA}, inset 0px 5px ${lightGrayishBlue};
     right: 0;
     top: 0;
   }
 
   &.rock {
-    border: 14px solid ${colors.rock_gradientB};
-    box-shadow: 0px 8px ${colors.rock_gradientA},
-      inset 0px 5px ${colors.lightGrayishBlue};
+    border: 14px solid ${rock_gradientB};
+    box-shadow: 0px 8px ${rock_gradientA}, inset 0px 5px ${lightGrayishBlue};
     bottom: 0;
     left: 0;
     margin: auto;
@@ -96,32 +106,50 @@ const ItemLoading = styled(Item)`
   height: 105px;
   margin: 15px 12.5px 40px 12.5px;
   box-shadow: none;
-  background: ${colors.itemLoading};
+  background: ${itemLoading};
   position: relative;
 `;
 
 const ItemResult = styled(Item)`
+  cursor: default;
   position: relative;
 
   &.paper,
   &.scissor,
   &.rock {
-    box-shadow: ${(props) =>
-      props.shadow === "winner"
+    box-shadow: ${({ shadow }) =>
+      shadow === "winner"
         ? `0px 0px 0px 1em rgb(45, 62, 92, 50%),
       0px 0px 0px 2.55em rgb(41, 58, 88, 50%),
       0px 0px 0px 4.44em rgb(35, 54, 86, 50%)`
         : "none"};
-    z-index: ${(props) => (props.shadow === "winner" ? 0 : 1)};
+    z-index: ${({ shadow }) => (shadow === "winner" ? 0 : 1)};
   }
 
   &:active {
     transform: none;
   }
 `;
+const titleAnimation = keyframes`
+  0%{
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  70%{
+    transform: scale(0.9);
+  }
+`;
 
 const Title = styled.h1`
-  color: ${colors.score_background};
+  animation-delay: 2.3s;
+  animation-duration: 1s;
+  animation-name: ${titleAnimation};
+  animation-iteration-count: 1;
+  color: ${score_background};
   font-size: ${fontSizes.xxl};
   letter-spacing: 2px;
   margin: 0;
@@ -130,7 +158,7 @@ const Title = styled.h1`
 
 const ButtonBack = styled.button`
   border-radius: 10px;
-  color: ${colors.dark_text};
+  color: ${dark_text};
   font-size: ${fontSizes.md};
   font-weight: 600;
   letter-spacing: 2px;
