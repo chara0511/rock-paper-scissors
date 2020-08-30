@@ -30,12 +30,6 @@ const StyledContent = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 2.7em;
-
-  & .winner {
-    box-shadow: 0px 0px 0px 1em rgb(45, 62, 92, 50%),
-      0px 0px 0px 2.55em rgb(41, 58, 88, 50%),
-      0px 0px 0px 4.44em rgb(35, 54, 86, 50%);
-  }
 `;
 
 const Description = styled.p`
@@ -43,6 +37,7 @@ const Description = styled.p`
   color: ${colors.score_background};
   font-size: ${fontSizes.md};
   margin: 30px 0;
+  position: relative;
   text-transform: uppercase;
 `;
 
@@ -50,7 +45,7 @@ const Results = styled.div`
   border: 1px solid yellow;
   margin: 0 auto;
   width: 220px;
-  visibility: ${(props) => (props.show ? props.show : "hidden")};
+  visibility: ${({ show }) => (show ? show : "hidden")};
 `;
 
 const Item = styled.button`
@@ -105,14 +100,19 @@ const ItemLoading = styled(Item)`
   position: relative;
 `;
 
-// create a new box to include this 2 box shadows and apply position absolute
 const ItemResult = styled(Item)`
   position: relative;
 
   &.paper,
   &.scissor,
   &.rock {
-    box-shadow: none;
+    box-shadow: ${(props) =>
+      props.shadow === "winner"
+        ? `0px 0px 0px 1em rgb(45, 62, 92, 50%),
+      0px 0px 0px 2.55em rgb(41, 58, 88, 50%),
+      0px 0px 0px 4.44em rgb(35, 54, 86, 50%)`
+        : "none"};
+    z-index: ${(props) => (props.shadow === "winner" ? 0 : 1)};
   }
 
   &:active {
@@ -155,7 +155,9 @@ const Demo = () => {
     decrementScore,
   } = useContext(MainContext);
 
-  const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(null);
+
+  const [showresults, setShowResults] = useState(null);
 
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
@@ -164,6 +166,7 @@ const Demo = () => {
   const randomPick = () => {
     const interval = setInterval(() => {
       const randomItem = items[random(0, 3)];
+
       return getHousePicked(randomItem);
     }, 100);
 
@@ -189,14 +192,20 @@ const Demo = () => {
     decrementScore();
 
     setTimeout(() => {
-      setResults(true);
+      setLoading(true);
     }, 300);
+
+    setTimeout(() => {
+      setShowResults(true);
+    }, 2300);
   };
 
   const playAgain = () => {
     changeToggle(false);
 
-    setResults(false);
+    setLoading(false);
+
+    setShowResults(false);
   };
 
   return (
@@ -204,17 +213,23 @@ const Demo = () => {
       {toggle ? (
         <StyledContent>
           <div>
-            <ItemResult className={you_picked}>
+            <ItemResult
+              className={you_picked}
+              shadow={result === "You Win" && "winner"}
+            >
               <FormattedIcons name={you_picked} />
             </ItemResult>
             <Description>You picked</Description>
           </div>
 
           <div>
-            {!results ? (
+            {!loading ? (
               <ItemLoading />
             ) : (
-              <ItemResult className={house_picked}>
+              <ItemResult
+                className={house_picked}
+                shadow={result === "You Lose" && "winner"}
+              >
                 <FormattedIcons name={house_picked} />
               </ItemResult>
             )}
@@ -222,7 +237,7 @@ const Demo = () => {
             <Description>The house picked</Description>
           </div>
 
-          <Results show={results && "initial"}>
+          <Results show={showresults && "initial"}>
             <Title>{result}</Title>
 
             <ButtonBack onClick={playAgain}>Play again</ButtonBack>

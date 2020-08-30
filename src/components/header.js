@@ -12,6 +12,8 @@ const StyledContainer = styled.div`
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
   text-align: center;
 `;
 
