@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "..";
 import { IconClose } from "../../icons";
+import media from "../media";
 
 const { colors, fontSizes } = theme;
 
@@ -16,8 +17,13 @@ const StyledButton = styled.button`
   font-weight: 600;
   height: 45px;
   letter-spacing: 1px;
+  text-align: ${(props) => (props.modalMode ? "end" : "center")};
   text-transform: uppercase;
-  width: 132px;
+  width: ${(props) => (props.modalMode ? "auto" : "132px")};
+
+  ${media.smDesktop`
+    grid-area: button;
+  `}
 `;
 const Button = ({ active, setActive, modalMode, buttonName }) => {
   const handleButton = () => {

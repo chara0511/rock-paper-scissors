@@ -30,5 +30,6 @@ export const theme = {
     ml: "1.38em", //25px
     xl: "1.77em", //32px
     xxl: "2.75em", //50px
+    xxxl: "3.34em", //60px
   },
 };

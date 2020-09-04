@@ -1,6 +1,6 @@
 import React from "react";
 import IconPaper from "./iconPaper";
-import IconScissors from "./iconScissors";
+import IconScissor from "./iconScissor";
 import IconRock from "./iconRock";
 
 const FormattedIcons = ({ name }) => {
@@ -9,7 +9,7 @@ const FormattedIcons = ({ name }) => {
       return <IconPaper />;
 
     case "scissor":
-      return <IconScissors />;
+      return <IconScissor />;
 
     case "rock":
       return <IconRock />;

@@ -1,8 +1,8 @@
 import React from "react";
 import Score from "./score";
 import styled from "styled-components";
-import Logo from "./images/logo";
-import { theme } from "../styles";
+import Logo from "../images/logo";
+import { theme, media } from "../styles";
 
 const { colors } = theme;
 
@@ -15,6 +15,12 @@ const StyledContainer = styled.div`
   position: relative;
   z-index: 1;
   text-align: center;
+
+  ${media.smDesktop`
+    border-radius: 16px;
+    margin: 0 auto;
+    width: 700px;
+  `}
 `;
 
 const StyledTitle = styled.div`
@@ -24,6 +30,11 @@ const StyledTitle = styled.div`
   & .logo {
     height: 50px;
     width: 86px;
+
+    ${media.smDesktop`
+      height: 96px;
+      width: 160px;
+    `}
   }
 `;
 

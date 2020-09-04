@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import BgTriangle from "./images/bgTriangle";
+import BgTriangle from "../images/bgTriangle";
 import { FormattedIcons } from "../icons";
 import { theme } from "../styles/theme";
 import MainContext from "./context/mainContext";
+import { media } from "../styles";
 
 const { colors, fontSizes } = theme;
 
@@ -22,6 +23,7 @@ const {
 
 const StyledContainer = styled.div`
   border: 1px solid red;
+  height: 350px;
   margin: 0 auto;
   max-width: 316px;
   position: relative;
@@ -29,12 +31,27 @@ const StyledContainer = styled.div`
   width: 100%;
 
   & .bgTriangle {
+    margin: auto;
     width: 50%;
 
     path {
       stroke-width: 26;
     }
   }
+
+  ${media.smDesktop`
+    max-width: 700px;
+    height: 450px;
+
+    & .bgTriangle {
+    width: 100%;
+    margin: 90px auto;
+
+    path {
+      stroke-width: 18;
+      }
+    }
+  `}
 `;
 
 const StyledContent = styled.div`
@@ -42,7 +59,15 @@ const StyledContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 2.7em;
+  margin: auto;
+  max-width: 316px;
+  position: relative;
+  width: 100%;
+
+  ${media.smDesktop`
+    max-width: 500px;
+    height: 450px;
+  `}
 `;
 
 const Description = styled.p`
@@ -98,6 +123,28 @@ const Item = styled.button`
     box-shadow: none;
     transform: translateY(8px);
   }
+
+  ${media.smDesktop`
+    height: 210px;
+    width: 210px;
+
+    &.paper {
+    border: 24px solid ${paper_gradientB};
+    }
+    &.scissor {
+    border: 24px solid ${scissor_gradientB};
+    }
+    &.rock {
+    border: 24px solid ${rock_gradientB};
+    }
+
+    & .iconPaper,
+    & .iconScissor,
+    & .iconRock{
+      height: 89px;
+      width: 79px;
+    }
+  `}
 `;
 
 const ItemLoading = styled(Item)`
@@ -272,7 +319,7 @@ const Demo = () => {
           </Results>
         </StyledContent>
       ) : (
-        <>
+        <StyledContent>
           <BgTriangle />
 
           {data.map(({ name, value }, i) => (
@@ -286,7 +333,7 @@ const Demo = () => {
               <FormattedIcons name={name} />
             </Item>
           ))}
-        </>
+        </StyledContent>
       )}
     </StyledContainer>
   );

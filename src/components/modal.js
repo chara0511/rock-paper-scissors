@@ -1,7 +1,7 @@
 import React from "react";
-import ImageRules from "./images/imageRules";
+import ImageRules from "../images/imageRules";
 import styled from "styled-components";
-import { theme, Button } from "../styles";
+import { theme, Button, media } from "../styles";
 
 const { colors, fontSizes } = theme;
 
@@ -13,6 +13,12 @@ const StyledContainer = styled.div`
   right: 0;
   top: 0;
   z-index: 3;
+
+  ${media.smDesktop`
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  `}
 `;
 
 const StyledContent = styled.div`
@@ -22,11 +28,32 @@ const StyledContent = styled.div`
   flex-direction: column;
   height: 100vh;
   justify-content: space-around;
+
+  ${media.smDesktop`
+    border-radius: 8px;
+    display: grid;
+    grid-template-areas: "title button"
+                          "rules rules" ;
+    height: 100%;
+    justify-content: center;
+    max-width: 400px;
+    max-height: 420px;
+    width: 100%;
+
+    & svg{
+      grid-area: rules;
+    }
+  `}
 `;
 
 const StyledTitle = styled.h2`
   font-size: ${fontSizes.ml};
   text-transform: uppercase;
+
+  ${media.smDesktop`
+    font-size: ${fontSizes.xl};
+    grid-area: title;
+  `}
 `;
 
 const Modal = ({ active, setActive }) => {

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
-import { Button } from "../styles";
+import { Button, media } from "../styles";
 import { Modal } from ".";
 
 const StyledContainer = styled.div`
   border: 1px solid green;
   margin: 1em auto 0 auto;
-  text-align: center;
+
+  ${media.smDesktop`
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+  `}
 `;
 
 const Rules = () => {

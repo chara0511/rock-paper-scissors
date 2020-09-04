@@ -1,7 +1,7 @@
 import IconClose from "./iconClose";
 import IconPaper from "./iconPaper";
-import IconScissors from "./iconScissors";
+import IconScissor from "./iconScissor";
 import IconRock from "./iconRock";
 import FormattedIcons from "./formattedIcons";
 
-export { IconClose, IconPaper, IconScissors, IconRock, FormattedIcons };
+export { IconClose, IconPaper, IconScissor, IconRock, FormattedIcons };
