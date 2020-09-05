@@ -8,18 +8,18 @@ const { colors, fontSizes } = theme;
 
 const StyledButton = styled.button`
   background-color: transparent;
-  border: ${(props) =>
-    props.modalMode ? props.modalMode : `2px solid ${colors.header_outline}`};
+  border: ${({ modalMode }) =>
+    modalMode ? modalMode : `2px solid ${colors.header_outline}`};
   border-radius: 10px;
-  color: ${(props) =>
-    props.modalMode ? `${colors.dark_text} ` : `${colors.score_background}`};
+  color: ${({ modalMode }) =>
+    modalMode ? `${colors.dark_text} ` : `${colors.score_background}`};
   font-size: ${fontSizes.md};
   font-weight: 600;
   height: 45px;
   letter-spacing: 1px;
-  text-align: ${(props) => (props.modalMode ? "end" : "center")};
+  text-align: ${({ modalMode }) => (modalMode ? "end" : "center")};
   text-transform: uppercase;
-  width: ${(props) => (props.modalMode ? "auto" : "132px")};
+  width: ${({ modalMode }) => (modalMode ? "auto" : "132px")};
 
   ${media.smDesktop`
     grid-area: button;

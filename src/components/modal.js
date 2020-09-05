@@ -16,6 +16,7 @@ const StyledContainer = styled.div`
 
   ${media.smDesktop`
     align-items: center;
+    background-color: ${colors.radial_gradient_dark};
     display: flex;
     justify-content: center;
   `}
@@ -30,6 +31,7 @@ const StyledContent = styled.div`
   justify-content: space-around;
 
   ${media.smDesktop`
+    background-color: ${colors.score_background};
     border-radius: 8px;
     display: grid;
     grid-template-areas: "title button"
@@ -53,6 +55,7 @@ const StyledTitle = styled.h2`
   ${media.smDesktop`
     font-size: ${fontSizes.xl};
     grid-area: title;
+    margin: 0;
   `}
 `;
 

@@ -42,7 +42,7 @@ const StyledScore = styled.p`
   letter-spacing: 2px;
 
   ${media.smDesktop`
-    font-size: ${fontSizes.xxxl};
+    font-size: ${fontSizes.xxl};
   `}
 `;
 

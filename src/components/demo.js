@@ -40,7 +40,7 @@ const StyledContainer = styled.div`
   }
 
   ${media.smDesktop`
-    max-width: 700px;
+    max-width: 950px;
     height: 450px;
 
     & .bgTriangle {
@@ -55,7 +55,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledContent = styled.div`
-  border: 1px solid green;
+  border: 3px solid green;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -70,6 +70,34 @@ const StyledContent = styled.div`
   `}
 `;
 
+const StyledContentResult = styled(StyledContent)`
+  ${media.smDesktop`
+    display: grid;
+    grid-template-areas: "YouPicked Result HousePicked";
+    height: 450px;
+    max-width: max-content;
+    align-items: center;
+  `}
+`;
+
+const WrapperYouPicked = styled.div`
+  ${media.smDesktop`
+    display: flex;
+    flex-direction: column-reverse;
+    grid-area: YouPicked;
+    margin: 0 1.5em;
+  `}
+`;
+
+const WrapperHousePicked = styled.div`
+  ${media.smDesktop`
+    display: flex;
+    flex-direction: column-reverse;
+    grid-area: HousePicked;
+     margin: 0 1.5em;
+  `}
+`;
+
 const Description = styled.p`
   border: 1px solid white;
   color: ${score_background};
@@ -77,13 +105,10 @@ const Description = styled.p`
   margin: 30px 0;
   position: relative;
   text-transform: uppercase;
-`;
 
-const Results = styled.div`
-  border: 1px solid yellow;
-  margin: 0 auto;
-  width: 220px;
-  visibility: ${({ show }) => (show ? show : "hidden")};
+  ${media.smDesktop`
+    font-size: ${fontSizes.ml};
+  `}
 `;
 
 const Item = styled.button`
@@ -171,12 +196,58 @@ const ItemResult = styled(Item)`
       0px 0px 0px 4.44em rgb(35, 54, 86, 50%)`
         : "none"};
     z-index: ${({ shadow }) => (shadow === "winner" ? 0 : 1)};
+
+    ${media.smDesktop`
+    box-shadow: ${({ shadow }) =>
+      shadow === "winner"
+        ? `0px 0px 0px 3.61em rgb(45, 62, 92, 50%),
+      0px 0px 0px 7.77em rgb(41, 58, 88, 50%),
+      0px 0px 0px 12.22em rgb(35, 54, 86, 50%)`
+        : "none"};
+  `}
   }
 
   &:active {
     transform: none;
   }
+
+  ${media.smDesktop`
+    height: 300px;
+    width: 300px;
+
+    &.paper {
+    border: 36px solid ${paper_gradientB};
+    }
+    &.scissor {
+    border: 36px solid ${scissor_gradientB};
+    }
+    &.rock {
+    border: 36px solid ${rock_gradientB};
+    }
+
+    & .iconPaper,
+    & .iconScissor,
+    & .iconRock{
+      height: 119px;
+      width: 109px;
+    }
+  `}
 `;
+
+const Results = styled.div`
+  border: 1px solid yellow;
+  margin: 0 auto;
+  width: 220px;
+  visibility: ${({ show }) => (show ? show : "hidden")};
+  z-index: 3;
+
+  ${media.smDesktop`
+    display: ${({ show }) => (show ? show : "none")};
+    visibility: initial;
+    width: 230px;
+  `}
+`;
+
 const titleAnimation = keyframes`
   0%{
     opacity: 0;
@@ -201,6 +272,10 @@ const Title = styled.h1`
   letter-spacing: 2px;
   margin: 0;
   text-transform: uppercase;
+
+  ${media.smDesktop`
+    animation-delay: 50ms;
+  `}
 `;
 
 const ButtonBack = styled.button`
@@ -286,8 +361,8 @@ const Demo = () => {
   return (
     <StyledContainer>
       {toggle ? (
-        <StyledContent>
-          <div>
+        <StyledContentResult>
+          <WrapperYouPicked>
             <ItemResult
               className={you_picked}
               shadow={result === "You Win" && "winner"}
@@ -295,9 +370,9 @@ const Demo = () => {
               <FormattedIcons name={you_picked} />
             </ItemResult>
             <Description>You picked</Description>
-          </div>
+          </WrapperYouPicked>
 
-          <div>
+          <WrapperHousePicked>
             {!loading ? (
               <ItemLoading />
             ) : (
@@ -310,14 +385,14 @@ const Demo = () => {
             )}
 
             <Description>The house picked</Description>
-          </div>
+          </WrapperHousePicked>
 
           <Results show={showresults && "initial"}>
             <Title>{result}</Title>
 
             <ButtonBack onClick={playAgain}>Play again</ButtonBack>
           </Results>
-        </StyledContent>
+        </StyledContentResult>
       ) : (
         <StyledContent>
           <BgTriangle />

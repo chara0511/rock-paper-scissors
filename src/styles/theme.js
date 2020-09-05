@@ -11,6 +11,7 @@ export const theme = {
     paper_gradientB: "#5670F5",
     radial_gradientA: "#1F3656",
     radial_gradientB: "#131538",
+    radial_gradient_dark: "rgba(11, 14, 31, 75%)",
     rock_gradientA: "#DB2D4D",
     rock_gradientB: "#DD405D",
     scissor_gradientA: "#EC9E0D",
