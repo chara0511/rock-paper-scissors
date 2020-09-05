@@ -19,13 +19,13 @@ $ git clone https://github.com/Your_Username/rock-paper-scissors.git
 ```
 
 This makes a local copy of repository in your machine.
-Once you have cloned the RetroJam-App repository in Github, move to that folder first using change directory command on Linux, Windows and Mac.
+Once you have cloned the rock-paper-scissors repository in Github, move to that folder first using change directory command on Linux, Windows and Mac.
 
 ```
 $ cd rock-paper-scissors
 ```
 
-This will change directory to a folder RetroJam-App
+This will change directory to a folder rock-paper-scissors
 
 ### 3. Run the following command to install all dependencies.
 
@@ -57,7 +57,7 @@ $ npm install
 
 </details>
 
-## 👩🏻‍💻 Technologies
+## 🚀 Technologies
 
 1. HTML
 2. CSS
