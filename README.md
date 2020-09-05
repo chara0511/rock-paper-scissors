@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 👋 Welcome! 👋
 
-## Available Scripts
+![](https://img.shields.io/github/license/jcarlos0511/rock-paper-scissors?style=for-the-badge)
+![](https://img.shields.io/github/stars/jcarlos0511/rock-paper-scissors?style=for-the-badge)
+![](https://img.shields.io/github/forks/jcarlos0511/rock-paper-scissors?style=for-the-badge)
 
-In the project directory, you can run:
+## Steps to follow 📜
 
-### `npm start`
+### 1. Fork it 🍴
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can get your own fork/copy of rock-paper-scissors-App by using the Fork button
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 2. Clone it 👥
 
-### `npm test`
+You need to clone (download) it to local machine using
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ git clone https://github.com/Your_Username/rock-paper-scissors.git
+```
 
-### `npm run build`
+This makes a local copy of repository in your machine.
+Once you have cloned the RetroJam-App repository in Github, move to that folder first using change directory command on Linux, Windows and Mac.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ cd rock-paper-scissors
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This will change directory to a folder RetroJam-App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Run the following command to install all dependencies.
 
-### `npm run eject`
+```
+$ npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 4. Ready Steady Go... 🐢 🐇
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 Preview
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<details>
+    <summary>🖥 Desktop version</summary>
+    
+![](public/images/desktop-preview.jpg)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+</details>
 
-## Learn More
+<details>
+    <summary>📱 Mobile version</summary>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](public/images/mobile-step-1.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](public/images/mobile-step-2.jpg)
 
-### Code Splitting
+![](public/images/mobile-step-3.jpg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![](public/images/mobile-rules-modal.jpg)
 
-### Analyzing the Bundle Size
+</details>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## 👩🏻‍💻 Technologies
 
-### Making a Progressive Web App
+1. HTML
+2. CSS
+3. Styled Components
+4. Javascript
+5. React
+6. Context API
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+[Frontend Mentor](https://www.frontendmentor.io) challenges allow you to improve your skills in a real-life workflow.
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This challenge is completely free. Please share it with anyone who will find it useful for practice.

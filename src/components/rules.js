@@ -5,7 +5,6 @@ import { Button, media } from "../styles";
 import { Modal } from ".";
 
 const StyledContainer = styled.div`
-  border: 1px solid green;
   margin: 1em auto 0 auto;
 
   ${media.smDesktop`

@@ -22,7 +22,6 @@ const {
 } = colors;
 
 const StyledContainer = styled.div`
-  border: 1px solid red;
   height: 350px;
   margin: 0 auto;
   max-width: 316px;
@@ -55,7 +54,6 @@ const StyledContainer = styled.div`
 `;
 
 const StyledContent = styled.div`
-  border: 3px solid green;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -99,7 +97,6 @@ const WrapperHousePicked = styled.div`
 `;
 
 const Description = styled.p`
-  border: 1px solid white;
   color: ${score_background};
   font-size: ${fontSizes.md};
   margin: 30px 0;
@@ -235,7 +232,6 @@ const ItemResult = styled(Item)`
 `;
 
 const Results = styled.div`
-  border: 1px solid yellow;
   margin: 0 auto;
   width: 220px;
   visibility: ${({ show }) => (show ? show : "hidden")};
@@ -244,7 +240,6 @@ const Results = styled.div`
   ${media.smDesktop`
     display: ${({ show }) => (show ? show : "none")};
     visibility: initial;
-    width: 230px;
   `}
 `;
 
@@ -288,6 +283,10 @@ const ButtonBack = styled.button`
   padding: 15px;
   text-transform: uppercase;
   width: 100%;
+
+  &:hover {
+    color: ${colors.softRed};
+  }
 `;
 
 const Demo = () => {

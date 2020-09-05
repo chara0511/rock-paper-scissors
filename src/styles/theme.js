@@ -4,6 +4,7 @@ export const theme = {
     cyan_gradientB: "#51BDD0",
     dark_text: "#3B4262",
     header_outline: "#606E85",
+    itemLoading: "#122343",
     lightGrayishBlue: "#C7C9D0",
     lizard_gradientA: "#824EE3",
     lizard_gradientB: "#8C5CE4",
@@ -18,7 +19,7 @@ export const theme = {
     scissor_gradientB: "#EBA822",
     score_background: "#FFFFFF",
     score_text: "#2A45C0",
-    itemLoading: "#122343",
+    softRed: "#F95656",
   },
   font: {
     barlow_semi_condensed:

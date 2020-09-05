@@ -18,13 +18,12 @@ const StyledContainer = styled.div`
 
   ${media.smDesktop`
     border-radius: 16px;
-    margin: 0 auto;
+    margin: .5em auto;
     width: 700px;
   `}
 `;
 
 const StyledTitle = styled.div`
-  border: 1px solid brown;
   margin: 22px;
 
   & .logo {
