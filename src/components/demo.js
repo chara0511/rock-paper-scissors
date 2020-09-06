@@ -363,6 +363,7 @@ const Demo = () => {
         <StyledContentResult>
           <WrapperYouPicked>
             <ItemResult
+              aria-label={`button__${you_picked}`}
               className={you_picked}
               shadow={result === "You Win" && "winner"}
             >
@@ -376,6 +377,7 @@ const Demo = () => {
               <ItemLoading />
             ) : (
               <ItemResult
+                aria-label={`button__${house_picked}`}
                 className={house_picked}
                 shadow={result === "You Lose" && "winner"}
               >
@@ -398,6 +400,7 @@ const Demo = () => {
 
           {data.map(({ name, value }, i) => (
             <Item
+              aria-label={`button__${name}`}
               className={name}
               key={i}
               name={name}

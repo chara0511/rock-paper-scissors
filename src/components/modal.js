@@ -24,7 +24,6 @@ const StyledContainer = styled.div`
 
 const StyledContent = styled.div`
   align-items: center;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   height: 100vh;

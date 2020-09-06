@@ -4,6 +4,10 @@
 ![](https://img.shields.io/github/stars/jcarlos0511/rock-paper-scissors?style=for-the-badge)
 ![](https://img.shields.io/github/forks/jcarlos0511/rock-paper-scissors?style=for-the-badge)
 
+## Live Demo
+
+https://rock-paper-scissors-nine-chi.vercel.app/ 🔥
+
 ## Steps to follow 📜
 
 ### 1. Fork it 🍴
@@ -38,7 +42,7 @@ $ npm install
 ## 🎨 Preview
 
 <details>
-    <summary>🖥 Desktop version</summary>
+    <summary>💻 Desktop version</summary>
     
 ![](public/images/desktop-preview.jpg)
 
@@ -57,7 +61,7 @@ $ npm install
 
 </details>
 
-## 🚀 Technologies
+## 👨‍💻 Technologies
 
 1. HTML
 2. CSS
