@@ -308,13 +308,14 @@ const Demo = () => {
 
   const [showresults, setShowResults] = useState(null);
 
-  const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
+  // change it to a pure function
+  const test = (random, min, max) => Math.floor(random * (max - min) + min);
 
   const items = data.map(({ name }) => name);
 
   const randomPick = () => {
     const interval = setInterval(() => {
-      const randomItem = items[random(0, 3)];
+      const randomItem = items[test(Math.random(), 0, 3)];
 
       return getHousePicked(randomItem);
     }, 100);
