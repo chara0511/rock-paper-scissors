@@ -1,13 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import { theme } from "../styles";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { theme } from '../styles';
+
 const { colors } = theme;
 
 const StyledContainer = styled.div`
   background-image: radial-gradient(
     circle at 50% 0%,
-    ${colors.radial_gradientA} 15%,
-    ${colors.radial_gradientB} 100%
+    ${colors.radialGradientA} 15%,
+    ${colors.radialGradientB} 100%
   );
   min-height: 100vh;
   padding: 30px;
@@ -16,8 +18,12 @@ const StyledContainer = styled.div`
   justify-content: space-between;
 `;
 
-const Main = (props) => {
-  return <StyledContainer>{props.children}</StyledContainer>;
+const Main = ({ children }) => {
+  return <StyledContainer>{children}</StyledContainer>;
+};
+
+Main.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 export default Main;

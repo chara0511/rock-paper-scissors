@@ -1,33 +1,27 @@
-import React, { useReducer } from "react";
-import MainContext from "./mainContext";
-import { mainReducer } from "./mainReducer";
-import {
-  YOU_PICKED,
-  HOUSE_PICKED,
-  TOGGLE,
-  RESULT,
-  INCREMENT,
-  DECREMENT,
-} from "./types";
+import React, { useReducer } from 'react';
+import PropTypes from 'prop-types';
+import MainContext from './mainContext';
+import { mainReducer } from './mainReducer';
+import { YOU_PICKED, HOUSE_PICKED, TOGGLE, RESULT, INCREMENT, DECREMENT } from './types';
 
 const MainState = ({ children }) => {
   const initialState = {
-    you_picked: "",
-    house_picked: "",
+    youPicked: '',
+    housePicked: '',
     toggle: false,
     result: null,
     score: 0,
     data: [
       {
-        name: "paper",
+        name: 'paper',
         value: 0,
       },
       {
-        name: "scissor",
+        name: 'scissor',
         value: 1,
       },
       {
-        name: "rock",
+        name: 'rock',
         value: 2,
       },
     ],
@@ -49,31 +43,24 @@ const MainState = ({ children }) => {
 
   // resolve this
   const getResult = (youPicked, theHousePicked) => {
-    const dispatchFn = (message) =>
-      dispatch({ type: RESULT, payload: message });
+    const dispatchFn = (message) => dispatch({ type: RESULT, payload: message });
 
     if (youPicked === theHousePicked) {
-      return dispatchFn("Draw");
+      return dispatchFn('Draw');
     }
 
     switch (youPicked) {
-      case "paper":
-        return theHousePicked === "scissor"
-          ? dispatchFn("You Lose")
-          : dispatchFn("You Win");
+      case 'paper':
+        return theHousePicked === 'scissor' ? dispatchFn('You Lose') : dispatchFn('You Win');
 
-      case "scissor":
-        return theHousePicked === "paper"
-          ? dispatchFn("You Win")
-          : dispatchFn("You Lose");
+      case 'scissor':
+        return theHousePicked === 'paper' ? dispatchFn('You Win') : dispatchFn('You Lose');
 
-      case "rock":
-        return theHousePicked === "scissor"
-          ? dispatchFn("You Win")
-          : dispatchFn("You Lose");
+      case 'rock':
+        return theHousePicked === 'scissor' ? dispatchFn('You Win') : dispatchFn('You Lose');
 
       default:
-        return;
+        return null;
     }
   };
 
@@ -92,8 +79,8 @@ const MainState = ({ children }) => {
   return (
     <MainContext.Provider
       value={{
-        you_picked: state.you_picked,
-        house_picked: state.house_picked,
+        youPicked: state.youPicked,
+        housePicked: state.housePicked,
         toggle: state.toggle,
         result: state.result,
         score: state.score,
@@ -109,6 +96,10 @@ const MainState = ({ children }) => {
       {children}
     </MainContext.Provider>
   );
+};
+
+MainState.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 export default MainState;

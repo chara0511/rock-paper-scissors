@@ -1,24 +1,24 @@
-import React, { useContext, useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import BgTriangle from "../images/bgTriangle";
-import { FormattedIcons } from "../icons";
-import { theme } from "../styles/theme";
-import MainContext from "./context/mainContext";
-import { media } from "../styles";
+import React, { useContext, useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
+import BgTriangle from '../images/bgTriangle';
+import { FormattedIcons } from '../icons';
+import { theme } from '../styles/theme';
+import MainContext from './context/mainContext';
+import { media } from '../styles';
 
 const { colors, fontSizes } = theme;
 
 const {
-  dark_text,
+  darkText,
   itemLoading,
   lightGrayishBlue,
-  paper_gradientA,
-  paper_gradientB,
-  rock_gradientA,
-  rock_gradientB,
-  scissor_gradientA,
-  scissor_gradientB,
-  score_background,
+  paperGradientA,
+  paperGradientB,
+  rockGradientA,
+  rockGradientB,
+  scissorGradientA,
+  scissorGradientB,
+  scoreBackground,
 } = colors;
 
 const StyledContainer = styled.div`
@@ -97,7 +97,7 @@ const WrapperHousePicked = styled.div`
 `;
 
 const Description = styled.p`
-  color: ${score_background};
+  color: ${scoreBackground};
   font-size: ${fontSizes.md};
   margin: 30px 0;
   position: relative;
@@ -120,21 +120,21 @@ const Item = styled.button`
   user-select: none;
 
   &.paper {
-    border: 14px solid ${paper_gradientB};
-    box-shadow: 0px 8px ${paper_gradientA}, inset 0px 5px ${lightGrayishBlue};
+    border: 14px solid ${paperGradientB};
+    box-shadow: 0px 8px ${paperGradientA}, inset 0px 5px ${lightGrayishBlue};
     top: 0;
   }
 
   &.scissor {
-    border: 14px solid ${scissor_gradientB};
-    box-shadow: 0px 8px ${scissor_gradientA}, inset 0px 5px ${lightGrayishBlue};
+    border: 14px solid ${scissorGradientB};
+    box-shadow: 0px 8px ${scissorGradientA}, inset 0px 5px ${lightGrayishBlue};
     right: 0;
     top: 0;
   }
 
   &.rock {
-    border: 14px solid ${rock_gradientB};
-    box-shadow: 0px 8px ${rock_gradientA}, inset 0px 5px ${lightGrayishBlue};
+    border: 14px solid ${rockGradientB};
+    box-shadow: 0px 8px ${rockGradientA}, inset 0px 5px ${lightGrayishBlue};
     bottom: 0;
     left: 0;
     margin: auto;
@@ -151,13 +151,13 @@ const Item = styled.button`
     width: 210px;
 
     &.paper {
-    border: 24px solid ${paper_gradientB};
+    border: 24px solid ${paperGradientB};
     }
     &.scissor {
-    border: 24px solid ${scissor_gradientB};
+    border: 24px solid ${scissorGradientB};
     }
     &.rock {
-    border: 24px solid ${rock_gradientB};
+    border: 24px solid ${rockGradientB};
     }
 
     & .iconPaper,
@@ -187,20 +187,20 @@ const ItemResult = styled(Item)`
   &.scissor,
   &.rock {
     box-shadow: ${({ shadow }) =>
-      shadow === "winner"
+      shadow === 'winner'
         ? `0px 0px 0px 1em rgb(45, 62, 92, 50%),
       0px 0px 0px 2.55em rgb(41, 58, 88, 50%),
       0px 0px 0px 4.44em rgb(35, 54, 86, 50%)`
-        : "none"};
-    z-index: ${({ shadow }) => (shadow === "winner" ? 0 : 1)};
+        : 'none'};
+    z-index: ${({ shadow }) => (shadow === 'winner' ? 0 : 1)};
 
     ${media.smDesktop`
     box-shadow: ${({ shadow }) =>
-      shadow === "winner"
+      shadow === 'winner'
         ? `0px 0px 0px 3.61em rgb(45, 62, 92, 50%),
       0px 0px 0px 7.77em rgb(41, 58, 88, 50%),
       0px 0px 0px 12.22em rgb(35, 54, 86, 50%)`
-        : "none"};
+        : 'none'};
   `}
   }
 
@@ -213,13 +213,13 @@ const ItemResult = styled(Item)`
     width: 300px;
 
     &.paper {
-    border: 36px solid ${paper_gradientB};
+    border: 36px solid ${paperGradientB};
     }
     &.scissor {
-    border: 36px solid ${scissor_gradientB};
+    border: 36px solid ${scissorGradientB};
     }
     &.rock {
-    border: 36px solid ${rock_gradientB};
+    border: 36px solid ${rockGradientB};
     }
 
     & .iconPaper,
@@ -234,11 +234,11 @@ const ItemResult = styled(Item)`
 const Results = styled.div`
   margin: 0 auto;
   width: 220px;
-  visibility: ${({ show }) => (show ? show : "hidden")};
+  visibility: ${({ show }) => show || 'hidden'};
   z-index: 3;
 
   ${media.smDesktop`
-    display: ${({ show }) => (show ? show : "none")};
+    display: ${({ show }) => show || 'none'};
     visibility: initial;
   `}
 `;
@@ -262,7 +262,7 @@ const Title = styled.h1`
   animation-duration: 1s;
   animation-name: ${titleAnimation};
   animation-iteration-count: 1;
-  color: ${score_background};
+  color: ${scoreBackground};
   font-size: ${fontSizes.xxl};
   letter-spacing: 2px;
   margin: 0;
@@ -275,7 +275,7 @@ const Title = styled.h1`
 
 const ButtonBack = styled.button`
   border-radius: 10px;
-  color: ${dark_text};
+  color: ${darkText};
   font-size: ${fontSizes.md};
   font-weight: 600;
   letter-spacing: 2px;
@@ -291,8 +291,8 @@ const ButtonBack = styled.button`
 
 const Demo = () => {
   const {
-    you_picked,
-    house_picked,
+    youPicked,
+    housePicked,
     toggle,
     result,
     data,
@@ -326,9 +326,8 @@ const Demo = () => {
   };
 
   useEffect(() => {
-    getResult(you_picked, house_picked);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [you_picked, house_picked]);
+    getResult(youPicked, housePicked);
+  }, [youPicked, housePicked]);
 
   const runDemo = ({ currentTarget }) => {
     getYouPicked(items[parseFloat(currentTarget.value)]);
@@ -364,11 +363,11 @@ const Demo = () => {
         <StyledContentResult>
           <WrapperYouPicked>
             <ItemResult
-              aria-label={`button__${you_picked}`}
-              className={you_picked}
-              shadow={result === "You Win" && "winner"}
+              aria-label={`button__${youPicked}`}
+              className={youPicked}
+              shadow={result === 'You Win' && 'winner'}
             >
-              <FormattedIcons name={you_picked} />
+              <FormattedIcons name={youPicked} />
             </ItemResult>
             <Description>You picked</Description>
           </WrapperYouPicked>
@@ -378,18 +377,18 @@ const Demo = () => {
               <ItemLoading />
             ) : (
               <ItemResult
-                aria-label={`button__${house_picked}`}
-                className={house_picked}
-                shadow={result === "You Lose" && "winner"}
+                aria-label={`button__${housePicked}`}
+                className={housePicked}
+                shadow={result === 'You Lose' && 'winner'}
               >
-                <FormattedIcons name={house_picked} />
+                <FormattedIcons name={housePicked} />
               </ItemResult>
             )}
 
             <Description>The house picked</Description>
           </WrapperHousePicked>
 
-          <Results show={showresults && "initial"}>
+          <Results show={showresults && 'initial'}>
             <Title>{result}</Title>
 
             <ButtonBack onClick={playAgain}>Play again</ButtonBack>
@@ -399,11 +398,11 @@ const Demo = () => {
         <StyledContent>
           <BgTriangle />
 
-          {data.map(({ name, value }, i) => (
+          {data.map(({ name, value }) => (
             <Item
               aria-label={`button__${name}`}
               className={name}
-              key={i}
+              key={value}
               name={name}
               onClick={runDemo}
               value={value}

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import styled from "styled-components";
-import { Button, media } from "../styles";
-import { Modal } from ".";
+import styled from 'styled-components';
+import { Button, media } from '../styles';
+import Modal from './modal';
 
 const StyledContainer = styled.div`
   margin: 1em auto 0 auto;

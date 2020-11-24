@@ -1,12 +1,13 @@
-import React from "react";
-import ImageRules from "../images/imageRules";
-import styled from "styled-components";
-import { theme, Button, media } from "../styles";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import ImageRules from '../images/imageRules';
+import { theme, Button, media } from '../styles';
 
 const { colors, fontSizes } = theme;
 
 const StyledContainer = styled.div`
-  background-color: ${colors.score_background};
+  background-color: ${colors.scoreBackground};
   bottom: 0;
   left: 0;
   position: fixed;
@@ -16,7 +17,7 @@ const StyledContainer = styled.div`
 
   ${media.smDesktop`
     align-items: center;
-    background-color: ${colors.radial_gradient_dark};
+    background-color: ${colors.radialGradient_dark};
     display: flex;
     justify-content: center;
   `}
@@ -30,7 +31,7 @@ const StyledContent = styled.div`
   justify-content: space-around;
 
   ${media.smDesktop`
-    background-color: ${colors.score_background};
+    background-color: ${colors.scoreBackground};
     border-radius: 8px;
     display: grid;
     grid-template-areas: "title button"
@@ -68,6 +69,11 @@ const Modal = ({ active, setActive }) => {
       </StyledContent>
     </StyledContainer>
   );
+};
+
+Modal.propTypes = {
+  active: PropTypes.object.isRequired,
+  setActive: PropTypes.func.isRequired,
 };
 
 export default Modal;

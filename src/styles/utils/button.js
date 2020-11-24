@@ -1,30 +1,30 @@
-import React from "react";
-import styled from "styled-components";
-import { theme } from "..";
-import { IconClose } from "../../icons";
-import media from "../media";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import media from '../media';
+import { IconClose } from '../../icons';
+import { theme } from '../theme';
 
 const { colors, fontSizes } = theme;
 
 const StyledButton = styled.button`
   background-color: transparent;
-  border: ${({ modalMode }) =>
-    modalMode ? modalMode : `2px solid ${colors.header_outline}`};
+  border: ${({ modalMode }) => modalMode || `2px solid ${colors.headerOutline}`};
   border-radius: 10px;
-  color: ${({ modalMode }) =>
-    modalMode ? `${colors.dark_text} ` : `${colors.score_background}`};
+  color: ${({ modalMode }) => (modalMode ? `${colors.darkText} ` : `${colors.scoreBackground}`)};
   font-size: ${fontSizes.md};
   font-weight: 600;
   height: 45px;
   letter-spacing: 1px;
-  text-align: ${({ modalMode }) => (modalMode ? "end" : "center")};
+  text-align: ${({ modalMode }) => (modalMode ? 'end' : 'center')};
   text-transform: uppercase;
-  width: ${({ modalMode }) => (modalMode ? "auto" : "132px")};
+  width: ${({ modalMode }) => (modalMode ? 'auto' : '132px')};
 
   ${media.smDesktop`
     grid-area: button;
   `}
 `;
+
 const Button = ({ active, setActive, modalMode, buttonName }) => {
   const handleButton = () => {
     if (!active.modal) {
@@ -36,8 +36,16 @@ const Button = ({ active, setActive, modalMode, buttonName }) => {
 
   return (
     <StyledButton modalMode={modalMode} onClick={handleButton}>
-      {buttonName ? buttonName : <IconClose />}
+      {buttonName || <IconClose />}
     </StyledButton>
   );
 };
+
+Button.propTypes = {
+  active: PropTypes.object.isRequired,
+  setActive: PropTypes.func.isRequired,
+  modalMode: PropTypes.string,
+  buttonName: PropTypes.string,
+};
+
 export default Button;

@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { theme, media } from "../styles";
-import MainContext from "./context/mainContext";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { theme, media } from '../styles';
+import MainContext from './context/mainContext';
 
 const { colors, fontSizes } = theme;
 
 const StyledContainer = styled.div`
-  background-color: ${colors.score_background};
+  background-color: ${colors.scoreBackground};
   border-radius: 5px;
   height: 75px;
   margin: 0 22px;
@@ -26,7 +26,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledName = styled.p`
-  color: ${colors.score_text};
+  color: ${colors.scoreText};
   font-size: ${fontSizes.sm};
   letter-spacing: 1px;
   text-transform: uppercase;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const BgTriangle = () => {
   return (
@@ -15,7 +15,7 @@ const BgTriangle = () => {
         strokeWidth="15"
         d="M291.5 7.5H4.574c3.119 0 52.416 84.667 147.892 254L291.5 7.5z"
         opacity="0.2"
-      ></path>
+      />
     </svg>
   );
 };

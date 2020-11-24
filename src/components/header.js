@@ -1,14 +1,14 @@
-import React from "react";
-import Score from "./score";
-import styled from "styled-components";
-import Logo from "../images/logo";
-import { theme, media } from "../styles";
+import React from 'react';
+import styled from 'styled-components';
+import Score from './score';
+import Logo from '../images/logo';
+import { theme, media } from '../styles';
 
 const { colors } = theme;
 
 const StyledContainer = styled.div`
   align-items: center;
-  border: 4px solid ${colors.header_outline};
+  border: 4px solid ${colors.headerOutline};
   border-radius: 8px;
   display: flex;
   justify-content: space-between;

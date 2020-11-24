@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import { theme } from "./theme";
-import FontFaces from "./font";
+import { createGlobalStyle } from 'styled-components';
+import { theme } from './theme';
+import FontFaces from './font';
 
 const { colors, font, fontSizes } = theme;
 
@@ -55,7 +55,7 @@ const GlobalStyles = createGlobalStyle`
   h4,
   h5,
   h6 {
-    color: ${colors.dark_text};
+    color: ${colors.darkText};
   }
 
   img {
@@ -83,7 +83,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   p {
-    color: ${colors.dark_text};
+    color: ${colors.darkText};
   }
 
 `;
